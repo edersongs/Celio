@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/default'">
+	
+<head>
+	
+	<th:block layout:fragment="css-extra">
+		<link rel="stylesheet" type="text/css" th:href="@{/bower_components/morris.js/morris.css}"/>
+		<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" /> -->
+	</th:block>
+</head>
+<body class="hold-transition skin-blue-light sidebar-mini sidebar-collapse">
+
+	<section layout:fragment="conteudo">
+		<!-- <section class="content-header">
+			<h1>
+				Impressões <small>Controle de impressões</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+			</ol>
+		</section> -->
+
+		<section class="content">
+			<div class="box box-default">
+					
+					<div class="box-body">
+						
+						<div class="row">
+							
+							<div class="col-md-4">
+							
+		          				<div class="chart-responsive">
+					          		<div class="chart" id="chartQuotasGrupoID" style="height: 300px; position: relative;"></div>
+		          				</div>
+					          
+					        </div>
+					        
+		          			<div class="col-md-2">
+				          		<div id="lgQuotasGrupoID" class="chart-legend clearfix donut-legend"></div>
+		          			</div>
+														
+						</div>
+					</div>
+					
+					<!-- <div class="box-footer">
+						
+						<button id="salveButtonID" type="submit" class="btn btn-primary" style="width:100px;">Salvar</button>
+						<a class="btn btn-danger" th:href="@{/}" style="width:100px;">Cancelar</a>
+							
+					</div> -->
+					
+			</div>
+		</section>
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
+		<script th:src="@{/bower_components/raphael/raphael.min.js}"></script>
+		<script th:src="@{/helper/js/chart/graficos-home-config.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+	</th:block>
+</body>
+</html>
