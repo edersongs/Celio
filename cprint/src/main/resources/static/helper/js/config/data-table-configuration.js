@@ -1,4 +1,13 @@
- $(function () {
+/*
+ * 
+ *		@author Éderson Gervásio
+ * 
+ * 
+ * 
+ */
+
+
+$(function () {
     $('#tableID').DataTable({
       'paging'      : true,
       'lengthChange': false,

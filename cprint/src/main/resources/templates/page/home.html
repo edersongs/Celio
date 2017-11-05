@@ -36,23 +36,46 @@
 		          				<div class="chart-responsive">
 					          		<div class="chart" id="chartQuotasGrupoID" style="height: 300px; position: relative;"></div>
 		          				</div>
-					          
+					          	
+					          	
 					        </div>
 					        
 		          			<div class="col-md-2">
 				          		<div id="lgQuotasGrupoID" class="chart-legend clearfix donut-legend"></div>
 		          			</div>
+		          			
+		          			<div class="col-md-6">
+							
+		          				<div class="chart-responsive">
+					          		<div class="chart" id="chartTotalImpressaoDiaID" style="height: 300px; position: relative;"></div>
+		          				</div>
+					          
+					        </div>
 														
 						</div>
 					</div>
 					
-					<!-- <div class="box-footer">
-						
-						<button id="salveButtonID" type="submit" class="btn btn-primary" style="width:100px;">Salvar</button>
-						<a class="btn btn-danger" th:href="@{/}" style="width:100px;">Cancelar</a>
-							
-					</div> -->
-					
+					<div class="box-footer">
+	                  
+	                  <div class="row">
+	                  
+	                    <div class="col-sm-3 col-xs-6">
+	                      <div class="description-block border-right">
+	                        <h5 class="description-header" th:text="${#numbers.formatInteger(totalTrabalhoImpressaoDia,3,'POINT')}"></h5>
+	                        <span class="description-text">Trabalho impressão dia</span>
+	                      </div>
+	                    </div>
+	                    
+	                    <div class="col-sm-3 col-xs-6 pull-right">
+	                      <div class="description-block border-right">
+	                        <h5 class="description-header" th:text="${#numbers.formatInteger(totalPaginasImpressaoDia,3,'POINT')}"></h5>
+	                        <span class="description-text">Páginas impressão dia</span>
+	                      </div>
+	                    </div>
+	                    
+	                  </div>
+	                  
+	                </div>
 			</div>
 		</section>
 	</section>
@@ -61,7 +84,6 @@
 		<script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
 		<script th:src="@{/bower_components/raphael/raphael.min.js}"></script>
 		<script th:src="@{/helper/js/chart/graficos-home-config.js}"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 	</th:block>
 </body>
 </html>

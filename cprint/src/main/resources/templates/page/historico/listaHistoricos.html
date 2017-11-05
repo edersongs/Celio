@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="'layout/default'">
+
+<head>
+</head>
+<body class="hold-transition skin-blue-light sidebar-mini sidebar-collapse">
+	<section layout:fragment="conteudo">
+		<section class="content-header">
+			<h1>
+				Históricos <small>Consulta de histórios</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+			</ol>
+		</section>
+
+		<section class="content">
+			<div class="box box-default">
+				
+				<div class="box-header with-border">
+					
+					<form id="formFilterHistoricoID" method="GET" th:action="@{/historicos/pesquisar}">
+					
+						<div class="col-md-2">
+							<label>Data Inicial</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input id="datepickerInicial" type="text" name="dataInicial" class="form-control input-sm"/>
+							</div>
+						</div>
+			
+						<div class="col-md-2">
+							<label>Data Final</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input id="datepickerFinal" type="text" name="dataFinal" class="form-control input-sm"/>
+							</div>
+						</div>
+						
+						<div class="col-md-1">
+							
+							<div class="form-group">
+								<label></label>
+								<button id="pesquisaID" type="submit" class="btn btn-primary form-control" style="width:100px;">Pesquisar</button>
+								
+							</div>
+						</div>
+						
+					</form>
+					
+				</div>
+				
+				<div class="box-body table-responsive no-padding">
+				
+					<table id="tableID" class="table table-hover ">
+                    	<thead>
+	                    	<tr>
+		                        <th>Usuário</th>
+		                        <th>Documento</th>
+		                        <th>Paginas</th>
+		                        <th>Cliente</th>
+		                        <th>Impressora</th>
+		                        <th>Data/Hora</th>
+	                      	</tr>
+                      	</thead>
+
+                      	<tbody>
+	                      <tr th:each="obj : ${historicos}">
+	                        <td data-title="Usuário" th:text="${obj.nomeUsuario}"></td>
+	                        <td data-title="Documento" th:text="${obj.nomeArquivo}"></td>
+	                        <td data-title="Paginas" th:text="${#numbers.formatInteger(obj.quantidadePaga,3,'POINT')}"></td>
+	                        <td data-title="Cliente" th:text="${obj.maquinaCliente}"></td>
+	                        <td data-title="Impressora" th:text="${obj.nomeImpressora}"></td>
+	                        <td data-title="Data/Hora" th:text="${#dates.format(obj.dataImpressao, 'dd/MM/yyyy HH:mm:ss')}"></td>
+	                      </tr>
+	                    </tbody>
+	                    
+	                    <tfoot>
+				            <tr>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				            </tr>
+				        </tfoot>
+	                </table>
+				</div>
+			</div>
+		</section>
+	</section>
+	
+</body>
+</html>
