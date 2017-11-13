@@ -80,12 +80,14 @@ public class DateHelper {
 	
 	public static void main(String[] args) {
 		
-		Date mespassado = mesSeguinte(new Date(), -1);
+		Date mespassado = mesSeguinte(new Date(), -20);
 		
 		Date resulado = adicionaDiaParaData(new Date(), 1);
 		
 		//System.out.print(LocalDate.now().plusMonths(1));
 		
-		System.out.print(resulado);
+		//truncaData(adicionaDiaParaData(mesSeguinte(new Date(), -1), 20)));
+		
+		System.out.print(truncaData(adicionaDiaParaData(mesSeguinte(new Date(), -1), 5)));
 	}
 }

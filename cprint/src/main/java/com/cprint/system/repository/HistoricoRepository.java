@@ -22,10 +22,10 @@ import com.cprint.system.model.Historico;
 @Repository
 public interface HistoricoRepository extends JpaRepository<Historico, Long> {
 	
-	@Query("SELECT COUNT(h.codigoHistorico) FROM Historico h WHERE h.dataImpressao >= CURRENT_DATE() -5")
+	@Query("SELECT COUNT(h.codigoHistorico) FROM Historico h WHERE h.dataImpressao >= CURRENT_DATE() -20")
 	Integer findTotalTrabalhoImpessaoPorDia();
 	
-	@Query("SELECT SUM(h.quantidadePaga) FROM Historico h WHERE h.dataImpressao >= CURRENT_DATE() -5")
+	@Query("SELECT SUM(h.quantidadePaga) FROM Historico h WHERE h.dataImpressao >= CURRENT_DATE() -20")
 	Integer findTotalPaginasImpessaoPorDia();
 	
 	Collection<Historico> findByDataImpressaoGreaterThanEqual(Date data);

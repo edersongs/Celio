@@ -29,7 +29,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	@Query("SELECT new com.cprint.system.model.dto.TotalImpressaoUsuarioPorDiaDTO(h.nomeUsuario, sum(h.quantidadePaga)) "
 			+ "FROM Historico h "
-			+ "WHERE dataImpressao >= CURRENT_DATE() - 5"
+			+ "WHERE dataImpressao >= CURRENT_DATE() - 40"
 			+ "GROUP BY h.nomeUsuario "
 			+ "ORDER BY SUM(h.quantidadePaga) ")
 	Collection<TotalImpressaoUsuarioPorDiaDTO> findTotalImpressaoUsuarioPorDiaDTO();

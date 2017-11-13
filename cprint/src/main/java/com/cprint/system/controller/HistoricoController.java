@@ -36,7 +36,7 @@ public class HistoricoController {
 		
 		model.addObject("historicos", historicoRepository.
 				findByDataImpressaoGreaterThanEqual(DateHelper.
-						truncaData(DateHelper.adicionaDiaParaData(DateHelper.mesSeguinte(new Date(), -1), 9))));
+						truncaData(DateHelper.adicionaDiaParaData(DateHelper.mesSeguinte(new Date(), -1), 5))));
 		
 		pesquisar(null, null);
 		
@@ -50,8 +50,8 @@ public class HistoricoController {
 			@RequestParam("dataFinal") 
 			@DateTimeFormat(pattern="dd/MM/yyyy") Date dataFinal) {
 		
-		ModelAndView model = new ModelAndView("page/historico/listaHistoricos");
 		
+		ModelAndView model = new ModelAndView("page/historico/listaHistoricos");
 		if (dataInicial == null && dataFinal == null) {
 			
 			dataInicial = new Date();
