@@ -6,13 +6,8 @@
 	  layout:decorator="'layout/default'">
 	
 <head>
-	
-	<th:block layout:fragment="css-extra">
-		<!-- <link rel="stylesheet" type="text/css" th:href="@{/bower_components/morris.js/morris.css}"/> -->
-		<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" /> -->
-	</th:block>
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini sidebar-collapse">
+<body>
 
 	<section layout:fragment="conteudo">
 		<!-- <section class="content-header">
@@ -25,23 +20,65 @@
 		</section> -->
 
 		<section class="content">
-			<div class="col-md-6">
-				<div class="box box-default">
+			
+			<div class="row">
+		
+				<div class="col-lg-6 col-xs-6">
+		          <div class="small-box bg-aqua-active">
+		            <div class="inner">
+		              <h2 th:text="${#numbers.formatInteger(totalTrabalhoImpressaoDia,3,'POINT')}"></h2>
+		
+		              <p>Total de trabalho de impressão</p>
+		            </div>
+		          </div>
+		        </div>
+		        
+		        <div class="col-lg-6 col-xs-6">
+		          <div class="small-box bg-light-blue-active">
+		            <div class="inner">
+		              <h2 th:text="${#numbers.formatInteger(totalPaginasImpressaoDia,3,'POINT')}"></h2>
+		
+		              <p>Total de impressões</p>
+		            </div>
+		          </div>
+		        </div>
+			
+				<div class="col-md-6">
+					<div class="box box-default">
+						<div class="box-header with-border">
+			            	<h3 class="box-title">Quota de impressão por grupo</h3>
+		          		</div>
+						<div class="box-body">
 						
-					<div class="box-body">
-					
-	          			<div id="donutchart" style="height: 500px; position: relative;"></div>
-	          			
+		          			<div id="donutchart" style="height: 400px; position: relative;"></div>
+		          			
+						</div>
 					</div>
 				</div>
+				
+				<div class="col-md-6">
+					<div class="box box-default">
+						<div class="box-header with-border">
+			            	<h3 class="box-title">Quantidade de impressão por dia</h3>
+		          		</div>
+						<div class="box-body">
+						
+		          			<div style="height: 400px; position: relative;">
+					           <canvas id="barChart"></canvas>
+				            </div>
+		          			
+						</div>
+					</div>
+				</div>
+			
 			</div>
 		</section>
 	</section>
 	
 	<th:block layout:fragment="javascript-extra">
-		<!-- <script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
-		<script th:src="@{/bower_components/raphael/raphael.min.js}"></script> -->
-<!-- 		<script th:src="@{/helper/js/chart/graficos-home-config.js}"></script> -->
+		<!--<script th:src="@{/helper/js/chart/graficos-home-config.js}"></script>-->
+		<!-- <script th:src="@{/bower_components/jquery-knob/js/jquery.knob.js}"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script type="text/javascript">
 		  google.charts.load('current', {packages: ['corechart']});
@@ -51,7 +88,7 @@
 			 
 			  	// - Opções de apresentação
 		        var options = {
-		          title: 'Total Quotas por Grupo',
+		          //title: 'Total Quotas por Grupo',
 		          pieHole: 0.4,
 		        };
 				
@@ -75,6 +112,9 @@
 
 		             	// - Definindo o tipo de gráfico e buscando o id da div que está na tela onde o gráfico será apresentado
 		                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+		                
+		                var formatter = new google.visualization.NumberFormat({negativeColor: 'red', negativeParens: true, pattern: '#.###'});
+		                formatter.format(lista, 1);
 
 		                chart.draw(lista, options);   // - Adiciona ao objeto de gráfico os dados e opções de apresentação.
 		            },
@@ -83,6 +123,61 @@
 		            }
 		        });
 		  }
+		  
+		  $.ajax({
+				
+				method: 'GET',
+				url: '/graficoTotalImpressaoPorDia',
+			    dataType: 'json',
+			    success: function (json) {
+			    	
+			    	var labels = [], data = [];
+
+			        for (var i = 0; i < json.length ; i++){
+			                
+			        		labels.push(json[i].label);
+			                data.push(json[i].value);
+			                
+			        }
+			    	
+			        var barChart = new Chart(document.getElementById("barChart").getContext('2d'), {
+					  type: 'bar',
+						data: {
+						    labels: labels,
+						    datasets: [{
+						      label: 'Valor',
+						      data: data,
+						      backgroundColor: "rgba(36, 65, 229, 0.85)"
+						    }]
+						  } ,
+						  options: {
+							  legend: {display: false},
+						      responsive: true,
+			  				  tooltips: {
+			  				        callbacks: {
+			  				            label: function(tooltipItem, data) {
+			  				            	return tooltipItem.yLabel;
+			  				            }
+			  				        }
+			  				    },
+				  				  scales: {
+				  			        yAxes: [{
+				  			          ticks: {
+				  			            //beginAtZero: true,
+				  			            callback: function(value, index, values) {
+				  			              if(parseInt(value) >= 1000){
+				  			                return value;
+				  			              } else {
+				  			                return value;
+				  			              }
+				  			            }
+				  			          }
+				  			        }]
+				  			      }
+						    }
+					});
+			    }
+			});
 
 
 		</script>

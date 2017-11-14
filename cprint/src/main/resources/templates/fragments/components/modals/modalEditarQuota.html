@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <style>
+      .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+      }
+      .example-modal .modal {
+        background: transparent !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body>
+  	<div th:id="${obj.codigo}" class="modal fade modalEditarQuota" tabindex="-1" role="dialog" th:fragment="modalEditarQuota">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 style="text-align: left;" class="modal-title">Alterar Quota</h4>
+          </div>
+          
+          <form id="form" method="POST" th:action="@{/usuarios/{codigoUsuario} (codigoUsuario=${obj.codigo})}">
+	          <div class="modal-body">
+	            <div class="row">
+		            <div align="center">
+						<h4 class="modal-title">Total de Quota</h4>
+				        <h2> <b th:text="${obj.quantidadeAtual}"></b></h2>
+					</div>
+					
+					<div class="col-md-12">
+						<div align="center">
+							<div class="input-group">
+								<input id="valor" type="text" name="valorQuota" placeholder="Informe nova quota" class="form-control input-sm" style="with:350px;">
+							</div>
+							
+						</div>
+					</div>
+				</div>
+	          </div>
+          
+	          
+	          <div class="modal-footer">
+	            <button type="submit" class="btn btn-success pull-left">Salvar</button>
+	            	
+	            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

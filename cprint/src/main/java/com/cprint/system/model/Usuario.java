@@ -33,10 +33,10 @@ public class Usuario implements Serializable {
 	private String nome;
 	
 	@Column(name = "qut_def")
-	private Long quantidadeDefinida;
+	private Integer quantidadeDefinida;
 	
 	@Column(name = "qut_atu")
-	private Long quantidadeAtual;
+	private Integer quantidadeAtual;
 
 	@Column(name = "qut_ant")
 	private Long quantidadeAnterior;
@@ -68,22 +68,22 @@ public class Usuario implements Serializable {
 	}
 
 
-	public Long getQuantidadeDefinida() {
+	public Integer getQuantidadeDefinida() {
 		return quantidadeDefinida;
 	}
 
 
-	public void setQuantidadeDefinida(Long quantidadeDefinida) {
+	public void setQuantidadeDefinida(Integer quantidadeDefinida) {
 		this.quantidadeDefinida = quantidadeDefinida;
 	}
 
 
-	public Long getQuantidadeAtual() {
+	public Integer getQuantidadeAtual() {
 		return quantidadeAtual;
 	}
 
 
-	public void setQuantidadeAtual(Long quantidadeAtual) {
+	public void setQuantidadeAtual(Integer quantidadeAtual) {
 		this.quantidadeAtual = quantidadeAtual;
 	}
 

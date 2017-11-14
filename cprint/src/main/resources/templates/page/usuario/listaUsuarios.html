@@ -6,7 +6,7 @@
 
 <head>
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini sidebar-collapse">
+<body>
 	<section layout:fragment="conteudo">
 		<section class="content-header">
 			<h1>
@@ -25,18 +25,23 @@
                     	<thead>
 	                    	<tr>
 		                        <th>Usuário</th>
+		                        <th>Grupo</th>
 		                        <th>Quota Atual</th>
 		                        <th>Quota Padrão</th>
-		                        <th>Grupo</th>
 	                      	</tr>
                       	</thead>
 
                       	<tbody>
 	                      <tr th:each="obj : ${quotas}">
 	                        <td data-title="Usuário" th:text="${obj.nome}"></td>
-	                        <td data-title="Quota Atual" th:text="${#numbers.formatInteger(obj.quantidadeAtual,3,'POINT')}"></td>
-	                        <td data-title="Quota Padrão" th:text="${#numbers.formatInteger(obj.quantidadeDefinida,3,'POINT')}"></td>
 	                        <td data-title="Grupo" th:text="${obj.grupo}"></td>
+	                        <td style="text-align: right;" data-title="Quota Atual">
+								<a th:href="'#'+${obj.codigo}" data-toggle="modal">
+									<span class="label label-success" th:text="${obj.quantidadeAtual}"></span>
+								</a>
+								<div th:replace="fragments/components/modals/modalEditarQuota :: modalEditarQuota"></div>
+	                        </td>	                       
+	                        <td style="text-align: right;" data-title="Quota Padrão" th:text="${obj.quantidadeDefinida}"></td>
 	                      </tr>
 	                    </tbody>
 	                    
