@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cprint.system.model.dto.TotalImpressaoUsuarioPorDiaDTO;
 import com.cprint.system.model.dto.TotalQuotaPorGrupoDTO;
+import com.cprint.system.repository.AlertaRepository;
 import com.cprint.system.repository.HistoricoRepository;
 import com.cprint.system.repository.UsuarioRepository;
 
@@ -29,6 +30,7 @@ public class HomeController {
 	
 	@Autowired private UsuarioRepository usuarioRepository;
 	@Autowired private HistoricoRepository historicoRepository;
+	@Autowired private AlertaRepository alertaRepository;
 	
 	@GetMapping
 	public ModelAndView principal() {
@@ -36,6 +38,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("page/home");
 		model.addObject("totalTrabalhoImpressaoDia", historicoRepository.findTotalTrabalhoImpessaoPorDia());
 		model.addObject("totalPaginasImpressaoDia", historicoRepository.findTotalPaginasImpessaoPorDia());
+		model.addObject("totalAlertas", alertaRepository.count());
 		
 		return model;
 	}

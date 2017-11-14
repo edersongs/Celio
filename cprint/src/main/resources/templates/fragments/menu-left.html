@@ -11,27 +11,30 @@
 			<li>
 				<a th:href="@{/usuarios/}">
 		            <i class="fa fa-user-o"></i> <span>Usuários</span>
-		            <span class="pull-right-container">
+		            <!-- <span class="pull-right-container">
 		              <i class="fa fa-angle-left pull-right"></i>
-		            </span>
+		            </span> -->
 		        </a>
 			 </li>
 			 
 			 <li>
 				<a th:href="@{/historicos/}">
 		            <i class="fa fa-history"></i> <span>Histórico</span>
-		            <span class="pull-right-container">
+		            <!-- <span class="pull-right-container">
 		              <i class="fa fa-angle-left pull-right"></i>
-		            </span>
+		            </span> -->
 		        </a>
 			 </li>
 			 
 			 <li>
 				<a th:href="@{/alertas/}">
-		            <i class="fa fa-newspaper-o"></i> <span>Alerta</span>
+		            <i class="fa fa-newspaper-o"></i> <span>Alertas</span>
 		            <span class="pull-right-container">
-		              <i class="fa fa-angle-left pull-right"></i>
+		              <span class="label label-primary pull-right" th:text="${totalAlertas}"></span>
 		            </span>
+		            <!-- <span class="pull-right-container">
+		              <i class="fa fa-angle-left pull-right"></i>
+		            </span> -->
 		        </a>
 			 </li>
 			 

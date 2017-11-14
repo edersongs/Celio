@@ -31,4 +31,7 @@ public interface HistoricoRepository extends JpaRepository<Historico, Long> {
 	Collection<Historico> findByDataImpressaoGreaterThanEqual(Date data);
 	
 	List<Historico> findByDataImpressaoBetween(Date dataInicial, Date dataFinal);
+	
+	@Query("SELECT DISTINCT h.nomeImpressora FROM Historico h")
+	List<String> findImpressoras();
 }

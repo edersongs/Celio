@@ -3,7 +3,6 @@
  */
 package com.cprint.system.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,9 @@ public class HistoricoController {
 				findByDataImpressaoGreaterThanEqual(DateHelper.
 						truncaData(DateHelper.adicionaDiaParaData(DateHelper.mesSeguinte(new Date(), -1), 5))));
 		
-		pesquisar(null, null);
+		model.addObject("impressoras", historicoRepository.findImpressoras());
+		
+		pesquisar(null, null, null, null);
 		
 		return model;
 	}
@@ -48,7 +49,9 @@ public class HistoricoController {
 			@RequestParam("dataInicial") 
 			@DateTimeFormat(pattern="dd/MM/yyyy") Date dataInicial, 
 			@RequestParam("dataFinal") 
-			@DateTimeFormat(pattern="dd/MM/yyyy") Date dataFinal) {
+			@DateTimeFormat(pattern="dd/MM/yyyy") Date dataFinal,
+			@RequestParam("dataFinal") String nomeUsuario,
+			@RequestParam("dataFinal") String nomeImpressora) {
 		
 		
 		ModelAndView model = new ModelAndView("page/historico/listaHistoricos");

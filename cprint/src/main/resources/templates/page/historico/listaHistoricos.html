@@ -44,6 +44,21 @@
 							</div>
 						</div>
 						
+						<div class="col-md-2">
+							<div class="input-group">
+								<label>Usuário</label>
+			                    <input type="text" class="form-control input-sm" name="nomeUsuario">
+			                </div>
+						</div>
+						<div class="col-md-2">
+							<label>Impressoras</label> 
+									
+							<select id="tipoDespesaID" class="form-control select2 input-sm" name="impressora">
+								<option label="" value=""></option>
+								<option th:each="imp : ${impressoras}" th:value="${imp}" th:text="${imp}"></option>
+							</select>
+						</div>
+						
 						<div class="col-md-1">
 							
 							<div class="form-group">
@@ -75,7 +90,7 @@
 	                      <tr th:each="obj : ${historicos}">
 	                        <td data-title="Usuário" th:text="${obj.nomeUsuario}"></td>
 	                        <td data-title="Documento" th:text="${obj.nomeArquivo}"></td>
-	                        <td data-title="Paginas" th:text="${#numbers.formatInteger(obj.quantidadePaga,3,'POINT')}"></td>
+	                        <td data-title="Paginas" th:text="${obj.quantidadePaga}"></td>
 	                        <td data-title="Cliente" th:text="${obj.maquinaCliente}"></td>
 	                        <td data-title="Impressora" th:text="${obj.nomeImpressora}"></td>
 	                        <td data-title="Data/Hora" th:text="${#dates.format(obj.dataImpressao, 'dd/MM/yyyy HH:mm:ss')}"></td>
